@@ -1,0 +1,31 @@
+{
+  "name": "home_dashboard",
+  "version": "1.0.0",
+  "description": "dashboard for home edu and fun",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test",
+    "start": "DEBUG=* node build/main.js",
+    "dev": "backpack",
+    "build": "backpack build",
+    "buildrun": "npm run build && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgx027/home_dashboard.git"
+  },
+  "author": "cgx027",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/cgx027/home_dashboard/issues"
+  },
+  "homepage": "https://github.com/cgx027/home_dashboard#readme",
+  "dependencies":{
+      "backpack-core": "^0.4.3",
+      "express": "^4.15.3",
+      "body-parser": "^1.17.2",
+      "uuid": "^3.1.0",
+      "serve-index": "^1.9.0",
+      "debug": "^3.1.0"
+  } 
+}
