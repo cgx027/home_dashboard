@@ -12,6 +12,9 @@ import bodyParser from 'body-parser'
 import config from '../config'
 
 import TtsServiceMidware from './tts-service'
+import indexPageLoader from './index-page.js'
+
+import handlebars from 'express-handlebars'
 
 class HttpService {
     constructor() {
@@ -31,10 +34,16 @@ class HttpService {
             "icon": true,
             "hidden": true
         }));
+
+        // setup view engine
+        this.app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+        this.app.set('view engine', 'handlebars')
     }
+
 
     start() {
         // use tts service
+        this.app.get('/', indexPageLoader);
         this.app.post('/tts', TtsServiceMidware);
 
         this.server.on('close', () => {

@@ -10,7 +10,7 @@ import uuid from 'uuid/v1'
 import config from '../config'
 
 function TtsServiceMidware(req, res){
-    console.log("/tts post", req.body);
+    debug("/tts post", req.body);
     debug('tts post request: %o', req.body)
 
     let wavUrl = '/static/wav/' + uuid() + ".wav";
@@ -19,17 +19,17 @@ function TtsServiceMidware(req, res){
         [req.body.text, wavName]);
 
     tts_proc.stdout.on('data', (data) => {
-        // console.log("stdout: ", data);
-        console.log(`stdout: ${data}`);
+        // debug("stdout: ", data);
+        debug(`stdout: ${data}`);
     });
 
     tts_proc.stderr.on('data', (data) => {
-        // console.log("stderr: ", data);
-        console.log(`stderr: ${data}`);
+        // debug("stderr: ", data);
+        debug(`stderr: ${data}`);
     });
 
     tts_proc.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
+        debug(`child process exited with code ${code}`);
         res.send({'audioUrl': wavUrl});
     });
 
